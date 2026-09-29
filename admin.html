@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hotel Aurora — Panel</title><link rel="stylesheet" href="styles.css"></head>
+<body class="admin-body">
+<header class="admin-nav"><a href="index.html" class="mini-brand"><span class="brand-mark">H</span><strong>Hotel Aurora</strong></a><nav><a class="active" href="#">Resumen</a><a href="#reservas">Reservas</a><a href="#habitaciones">Habitaciones</a><a href="#calendario">Calendario</a></nav><a href="index.html" class="outline-btn">Vista huésped</a></header>
+<main class="admin-main">
+<div class="admin-head"><div><span class="eyebrow">OPERACIONES</span><h1>Buenos días, Hotel Aurora</h1><p id="todayText"></p></div><button class="outline-btn" id="resetData">Restaurar demo</button></div>
+<section class="dashboard-hero"><div><span>HOY</span><h2>Tu hotel,<br>en una sola vista.</h2><p>Disponibilidad, reservas y estados de habitaciones.</p></div><div class="stat-grid"><div><small>LLEGADAS</small><b id="arrivals">0</b></div><div><small>SALIDAS</small><b id="departures">0</b></div><div><small>OCUPADAS</small><b id="occupied">0</b></div><div><small>RESERVAS</small><b id="totalReservations">0</b></div></div></section>
+<section id="habitaciones" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">ESTADO</span><h2>Habitaciones</h2></div><span class="live-dot">● Actualizado</span></div><div id="statusGrid" class="status-grid"></div></section>
+<section id="reservas" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">GESTIÓN</span><h2>Reservas</h2></div><select id="reservationFilter"><option value="all">Todas</option><option value="active">Activas</option><option value="cancelled">Canceladas</option></select></div><div class="table-wrap"><table><thead><tr><th>Reserva</th><th>Huésped</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th><th></th></tr></thead><tbody id="reservationTable"></tbody></table></div></section>
+<section id="calendario" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">PLANIFICACIÓN</span><h2>Calendario</h2></div><div class="month-nav"><button id="prevAdmin">‹</button><b id="adminMonth"></b><button id="nextAdmin">›</button></div></div><div class="admin-calendar-wrap"><div id="adminCalendar" class="admin-calendar"></div></div></section>
+</main><script src="app.js"></script></body></html>

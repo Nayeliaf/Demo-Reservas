@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hotel Booking — Reserva</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="mobile-topbar">
+      <button class="icon-btn" id="mobileBack" aria-label="Atrás">‹</button>
+      <div class="mini-brand"><span class="brand-mark">H</span><strong>Hotel Booking</strong></div>
+      <button class="icon-btn" id="mobileMenu" aria-label="Menú">•••</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-art art-a"></div><div class="hero-art art-b"></div><div class="hero-art art-c"></div>
+        <div class="hero-inner">
+          <div class="eyebrow">RESERVA DIRECTA</div>
+          <h1>Encuentra tu próximo<br><span>lugar favorito.</span></h1>
+          <p>Busca una habitación, selecciona tus fechas y reserva en minutos.</p>
+        </div>
+
+        <div class="booking-widget">
+          <button class="field-button" id="openDestination">
+            <span class="field-icon">⌖</span>
+            <span><small>DESTINO</small><strong>Hotel Aurora</strong></span>
+          </button>
+          <button class="field-button" id="openDates">
+            <span class="field-icon">▣</span>
+            <span><small>SELECCIONA FECHAS</small><strong id="dateLabel">Seleccionar fechas</strong></span>
+          </button>
+          <button class="field-button" id="openGuests">
+            <span class="field-icon">♟</span>
+            <span><small>HABITACIONES Y HUÉSPEDES</small><strong id="guestLabel">1 habitación, 2 huéspedes</strong></span>
+          </button>
+          <button class="search-btn" id="searchBtn">BUSCAR HABITACIONES <span>→</span></button>
+        </div>
+      </section>
+
+      <section class="section rooms-section" id="rooms">
+        <div class="section-heading">
+          <div><span class="eyebrow">DISPONIBILIDAD</span><h2>Habitaciones para ti</h2></div>
+          <button class="text-btn" id="showAll">Ver todas →</button>
+        </div>
+        <div class="room-layout">
+          <div id="roomGrid" class="room-grid"></div>
+          <aside class="reservation-panel" id="reservationPanel">
+            <div class="panel-top"><span>RESUMEN</span><span class="live-dot">● Disponible</span></div>
+            <div class="panel-dates"><div><small>CHECK-IN</small><b id="sideIn">—</b></div><i>→</i><div><small>CHECK-OUT</small><b id="sideOut">—</b></div></div>
+            <div class="night-chip">☾ <span id="sideNights">0 noches</span></div>
+            <div class="selected-room"><small>HABITACIÓN</small><strong id="sideRoom">Selecciona una habitación</strong><span id="sideGuest">2 huéspedes</span></div>
+            <div class="price-lines"><div><span>Habitación</span><b id="sideSubtotal">$0</b></div><div><span>Impuestos y cargos</span><b id="sideTax">$0</b></div></div>
+            <div class="total-row"><span>Total</span><strong id="sideTotal">$0</strong></div>
+            <button class="cta full" id="continueBtn">Continuar</button>
+            <small class="secure">✓ Confirmación inmediata · Sin ayuda de recepción</small>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section feature-strip">
+        <div><span class="feature-icon">✓</span><b>Reserva directa</b><small>Sin intermediarios</small></div>
+        <div><span class="feature-icon">◷</span><b>Fechas flexibles</b><small>Consulta disponibilidad</small></div>
+        <div><span class="feature-icon">♡</span><b>Habitaciones reales</b><small>Fotos y detalles</small></div>
+        <div><span class="feature-icon">⌁</span><b>Confirmación</b><small>En pocos pasos</small></div>
+      </section>
+
+      <section class="section details-section">
+        <div class="details-copy"><span class="eyebrow">UNA EXPERIENCIA SIMPLE</span><h2>Todo lo que necesitas<br><span>antes de llegar.</span></h2><p>Una interfaz inspirada en las aplicaciones modernas de reservas: visual, clara y pensada primero para móvil.</p></div>
+        <div class="details-card">
+          <div class="detail-photo image-slot"><span>FOTO DEL HOTEL</span><small>assets/hotel.jpg</small></div>
+          <div class="detail-content"><span class="eyebrow">HOTEL AURORA</span><h3>Tu estancia empieza aquí</h3><p>Agrega aquí la descripción del hotel, servicios, ubicación y cualquier información importante para tus huéspedes.</p><div class="amenities"><span>Wi-Fi</span><span>Desayuno</span><span>Parking</span><span>Recepción</span></div></div>
+        </div>
+      </section>
+
+      <section class="section booking-form-section" id="checkout">
+        <div class="section-heading"><div><span class="eyebrow">DATOS DEL HUÉSPED</span><h2>Completa tu reserva</h2></div></div>
+        <form id="bookingForm" class="booking-form">
+          <div class="form-summary"><div><span>Habitación</span><strong id="formRoom">—</strong></div><div><span>Fechas</span><strong id="formDates">—</strong></div><div><span>Total</span><strong id="formTotal">$0</strong></div></div>
+          <div class="form-grid">
+            <label>Nombre completo<input id="guestName" required placeholder="Ej. María González"></label>
+            <label>Correo electrónico<input id="guestEmail" type="email" required placeholder="correo@ejemplo.com"></label>
+            <label>Teléfono<input id="guestPhone" required placeholder="+00 000 000 000"></label>
+            <label>Número de huéspedes<input id="formGuests" type="number" min="1" max="6" value="2" required></label>
+            <label class="wide">Solicitud especial<input id="guestNote" placeholder="Opcional"></label>
+          </div>
+          <button class="cta full" type="submit">Confirmar reserva <span>→</span></button>
+        </form>
+      </section>
+    </main>
+
+    <footer><strong>Hotel Aurora</strong><span>© <span id="year"></span> · Sistema beta</span><a href="admin.html">Panel del negocio</a></footer>
+  </div>
+
+  <div class="drawer-backdrop hidden" id="backdrop"></div>
+  <section class="bottom-sheet hidden" id="dateSheet">
+    <div class="sheet-handle"></div><div class="sheet-title"><h3>Selecciona tus fechas</h3><button class="close-sheet" data-close="dateSheet">×</button></div>
+    <div class="month-nav"><button id="prevMonth">‹</button><strong id="monthTitle"></strong><button id="nextMonth">›</button></div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <div class="sheet-dates"><div><small>CHECK-IN</small><b id="sheetIn">—</b></div><div><small>CHECK-OUT</small><b id="sheetOut">—</b></div></div>
+    <button class="cta full" id="dateDone">Listo</button>
+  </section>
+
+  <section class="bottom-sheet small-sheet hidden" id="guestSheet">
+    <div class="sheet-handle"></div><div class="sheet-title"><h3>Habitaciones y huéspedes</h3><button class="close-sheet" data-close="guestSheet">×</button></div>
+    <div class="counter"><div><strong>Habitaciones</strong><small>Habitaciones que deseas reservar</small></div><div class="counter-controls"><button data-counter="rooms" data-dir="-1">−</button><b id="roomsCount">1</b><button data-counter="rooms" data-dir="1">+</button></div></div>
+    <div class="counter"><div><strong>Adultos</strong><small>Mayores de 12 años</small></div><div class="counter-controls"><button data-counter="adults" data-dir="-1">−</button><b id="adultsCount">2</b><button data-counter="adults" data-dir="1">+</button></div></div>
+    <div class="counter"><div><strong>Niños</strong><small>De 0 a 11 años</small></div><div class="counter-controls"><button data-counter="children" data-dir="-1">−</button><b id="childrenCount">0</b><button data-counter="children" data-dir="1">+</button></div></div>
+    <button class="cta full" id="guestDone">Aplicar</button>
+  </section>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
