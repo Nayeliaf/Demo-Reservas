@@ -1,117 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Hotel Booking — Reserva</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Hotel Aurora — Reserva</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="mobile-topbar">
-      <button class="icon-btn" id="mobileBack" aria-label="Atrás">‹</button>
-      <div class="mini-brand"><span class="brand-mark">H</span><strong>Hotel Booking</strong></div>
-      <button class="icon-btn" id="mobileMenu" aria-label="Menú">•••</button>
-    </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-art art-a"></div><div class="hero-art art-b"></div><div class="hero-art art-c"></div>
-        <div class="hero-inner">
-          <div class="eyebrow">RESERVA DIRECTA</div>
-          <h1>Encuentra tu próximo<br><span>lugar favorito.</span></h1>
-          <p>Busca una habitación, selecciona tus fechas y reserva en minutos.</p>
-        </div>
+<!-- TOPBAR MÓVIL -->
+<div class="mobile-topbar">
+  <div class="mini-brand">
+    <div class="brand-mark">H</div>
+    <strong>Hotel Aurora</strong>
+  </div>
+  <button class="icon-btn" onclick="location.href='admin.html'" title="Panel">⚙</button>
+</div>
 
-        <div class="booking-widget">
-          <button class="field-button" id="openDestination">
-            <span class="field-icon">⌖</span>
-            <span><small>DESTINO</small><strong>Hotel Aurora</strong></span>
-          </button>
-          <button class="field-button" id="openDates">
-            <span class="field-icon">▣</span>
-            <span><small>SELECCIONA FECHAS</small><strong id="dateLabel">Seleccionar fechas</strong></span>
-          </button>
-          <button class="field-button" id="openGuests">
-            <span class="field-icon">♟</span>
-            <span><small>HABITACIONES Y HUÉSPEDES</small><strong id="guestLabel">1 habitación, 2 huéspedes</strong></span>
-          </button>
-          <button class="search-btn" id="searchBtn">BUSCAR HABITACIONES <span>→</span></button>
-        </div>
-      </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-art art-a"></div>
+  <div class="hero-art art-b"></div>
+  <div class="hero-art art-c"></div>
 
-      <section class="section rooms-section" id="rooms">
-        <div class="section-heading">
-          <div><span class="eyebrow">DISPONIBILIDAD</span><h2>Habitaciones para ti</h2></div>
-          <button class="text-btn" id="showAll">Ver todas →</button>
-        </div>
-        <div class="room-layout">
-          <div id="roomGrid" class="room-grid"></div>
-          <aside class="reservation-panel" id="reservationPanel">
-            <div class="panel-top"><span>RESUMEN</span><span class="live-dot">● Disponible</span></div>
-            <div class="panel-dates"><div><small>CHECK-IN</small><b id="sideIn">—</b></div><i>→</i><div><small>CHECK-OUT</small><b id="sideOut">—</b></div></div>
-            <div class="night-chip">☾ <span id="sideNights">0 noches</span></div>
-            <div class="selected-room"><small>HABITACIÓN</small><strong id="sideRoom">Selecciona una habitación</strong><span id="sideGuest">2 huéspedes</span></div>
-            <div class="price-lines"><div><span>Habitación</span><b id="sideSubtotal">$0</b></div><div><span>Impuestos y cargos</span><b id="sideTax">$0</b></div></div>
-            <div class="total-row"><span>Total</span><strong id="sideTotal">$0</strong></div>
-            <button class="cta full" id="continueBtn">Continuar</button>
-            <small class="secure">✓ Confirmación inmediata · Sin ayuda de recepción</small>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section feature-strip">
-        <div><span class="feature-icon">✓</span><b>Reserva directa</b><small>Sin intermediarios</small></div>
-        <div><span class="feature-icon">◷</span><b>Fechas flexibles</b><small>Consulta disponibilidad</small></div>
-        <div><span class="feature-icon">♡</span><b>Habitaciones reales</b><small>Fotos y detalles</small></div>
-        <div><span class="feature-icon">⌁</span><b>Confirmación</b><small>En pocos pasos</small></div>
-      </section>
-
-      <section class="section details-section">
-        <div class="details-copy"><span class="eyebrow">UNA EXPERIENCIA SIMPLE</span><h2>Todo lo que necesitas<br><span>antes de llegar.</span></h2><p>Una interfaz inspirada en las aplicaciones modernas de reservas: visual, clara y pensada primero para móvil.</p></div>
-        <div class="details-card">
-          <div class="detail-photo image-slot"><span>FOTO DEL HOTEL</span><small>assets/hotel.jpg</small></div>
-          <div class="detail-content"><span class="eyebrow">HOTEL AURORA</span><h3>Tu estancia empieza aquí</h3><p>Agrega aquí la descripción del hotel, servicios, ubicación y cualquier información importante para tus huéspedes.</p><div class="amenities"><span>Wi-Fi</span><span>Desayuno</span><span>Parking</span><span>Recepción</span></div></div>
-        </div>
-      </section>
-
-      <section class="section booking-form-section" id="checkout">
-        <div class="section-heading"><div><span class="eyebrow">DATOS DEL HUÉSPED</span><h2>Completa tu reserva</h2></div></div>
-        <form id="bookingForm" class="booking-form">
-          <div class="form-summary"><div><span>Habitación</span><strong id="formRoom">—</strong></div><div><span>Fechas</span><strong id="formDates">—</strong></div><div><span>Total</span><strong id="formTotal">$0</strong></div></div>
-          <div class="form-grid">
-            <label>Nombre completo<input id="guestName" required placeholder="Ej. María González"></label>
-            <label>Correo electrónico<input id="guestEmail" type="email" required placeholder="correo@ejemplo.com"></label>
-            <label>Teléfono<input id="guestPhone" required placeholder="+00 000 000 000"></label>
-            <label>Número de huéspedes<input id="formGuests" type="number" min="1" max="6" value="2" required></label>
-            <label class="wide">Solicitud especial<input id="guestNote" placeholder="Opcional"></label>
-          </div>
-          <button class="cta full" type="submit">Confirmar reserva <span>→</span></button>
-        </form>
-      </section>
-    </main>
-
-    <footer><strong>Hotel Aurora</strong><span>© <span id="year"></span> · Sistema beta</span><a href="admin.html">Panel del negocio</a></footer>
+  <div class="hero-inner">
+    <div class="eyebrow">RESERVA DIRECTA</div>
+    <h1>Encuentra tu próximo <span>lugar favorito.</span></h1>
+    <p>Busca una habitación, selecciona tus fechas y reserva en minutos. Sin intermediarios.</p>
   </div>
 
-  <div class="drawer-backdrop hidden" id="backdrop"></div>
-  <section class="bottom-sheet hidden" id="dateSheet">
-    <div class="sheet-handle"></div><div class="sheet-title"><h3>Selecciona tus fechas</h3><button class="close-sheet" data-close="dateSheet">×</button></div>
-    <div class="month-nav"><button id="prevMonth">‹</button><strong id="monthTitle"></strong><button id="nextMonth">›</button></div>
-    <div class="calendar-grid" id="calendarGrid"></div>
-    <div class="sheet-dates"><div><small>CHECK-IN</small><b id="sheetIn">—</b></div><div><small>CHECK-OUT</small><b id="sheetOut">—</b></div></div>
-    <button class="cta full" id="dateDone">Listo</button>
-  </section>
+  <!-- WIDGET DE BÚSQUEDA -->
+  <div class="booking-widget">
+    <button class="field-button" id="openDestination" disabled>
+      <div class="field-icon">⌖</div>
+      <div><small>DESTINO</small><strong>Hotel Aurora</strong></div>
+    </button>
+    <button class="field-button" id="openDates">
+      <div class="field-icon">▣</div>
+      <div><small>SELECCIONA FECHAS</small><strong id="dateLabel">Seleccionar fechas</strong></div>
+    </button>
+    <button class="field-button" id="openGuests">
+      <div class="field-icon">♟</div>
+      <div><small>HABITACIONES Y HUÉSPEDES</small><strong id="guestLabel">1 hab., 2 adultos</strong></div>
+    </button>
+    <button class="search-btn" id="searchBtn">BUSCAR →</button>
+  </div>
+</section>
 
-  <section class="bottom-sheet small-sheet hidden" id="guestSheet">
-    <div class="sheet-handle"></div><div class="sheet-title"><h3>Habitaciones y huéspedes</h3><button class="close-sheet" data-close="guestSheet">×</button></div>
-    <div class="counter"><div><strong>Habitaciones</strong><small>Habitaciones que deseas reservar</small></div><div class="counter-controls"><button data-counter="rooms" data-dir="-1">−</button><b id="roomsCount">1</b><button data-counter="rooms" data-dir="1">+</button></div></div>
-    <div class="counter"><div><strong>Adultos</strong><small>Mayores de 12 años</small></div><div class="counter-controls"><button data-counter="adults" data-dir="-1">−</button><b id="adultsCount">2</b><button data-counter="adults" data-dir="1">+</button></div></div>
-    <div class="counter"><div><strong>Niños</strong><small>De 0 a 11 años</small></div><div class="counter-controls"><button data-counter="children" data-dir="-1">−</button><b id="childrenCount">0</b><button data-counter="children" data-dir="1">+</button></div></div>
-    <button class="cta full" id="guestDone">Aplicar</button>
-  </section>
+<!-- DISPONIBILIDAD -->
+<section class="section" id="rooms">
+  <div class="section-heading">
+    <div>
+      <div class="eyebrow">DISPONIBILIDAD</div>
+      <h2>Habitaciones para ti</h2>
+    </div>
+  </div>
 
-  <div class="toast hidden" id="toast"></div>
-  <script src="app.js"></script>
+  <div class="room-layout">
+    <div class="room-grid" id="roomGrid">
+      <!-- Habitaciones se renderizan por JS -->
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <aside class="reservation-panel" id="reservationPanel">
+      <div class="panel-top">
+        <span>RESUMEN</span>
+        <span class="live-dot">● Disponible</span>
+      </div>
+      <div class="panel-dates">
+        <div><small>CHECK-IN</small><b id="sideIn">—</b></div>
+        <span class="night-chip">☾ <span id="sideNights">0 noches</span></span>
+        <div style="text-align:right"><small>CHECK-OUT</small><b id="sideOut">—</b></div>
+      </div>
+      <div class="selected-room">
+        <small>HABITACIÓN</small>
+        <strong id="sideRoom">Selecciona una habitación</strong>
+        <span id="sideGuest">—</span>
+      </div>
+      <div class="price-lines">
+        <div><span>Habitación</span><b id="sideSubtotal">$0</b></div>
+        <div><span>Impuestos (5%)</span><b id="sideTax">$0</b></div>
+      </div>
+      <div class="total-row">
+        <span>Total</span>
+        <div style="text-align:right">
+          <strong id="sideTotal">$0</strong>
+          <div class="bcv-info" id="sideBcv">Bs. 0</div>
+           <div class="bcv-source">Tasa BCV del día</div>
+        </div>
+      </div>
+      <button class="btn-primary full" id="continueBtn" style="margin-top:15px">Continuar →</button>
+      <small class="secure">✓ Confirmación inmediata · Pago seguro</small>
+    </aside>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="feature-strip">
+  <div><div class="feature-icon">✓</div><div><b>Reserva directa</b><small>Sin intermediarios</small></div></div>
+  <div><div class="feature-icon">◷</div><div><b>Fechas flexibles</b><small>Consulta disponibilidad</small></div></div>
+  <div><div class="feature-icon">♡</div><div><b>Habitaciones reales</b><small>Fotos y detalles</small></div></div>
+  <div><div class="feature-icon">⌁</div><div><b>Confirmación</b><small>En pocos pasos</small></div></div>
+</div>
+
+<!-- DETALLES -->
+<section class="section details-section">
+  <div class="details-copy">
+    <div class="eyebrow">UNA EXPERIENCIA SIMPLE</div>
+    <h2>Todo lo que necesitas <br>antes de llegar.</h2>
+    <p>Una interfaz inspirada en las aplicaciones modernas de reservas: visual, clara y pensada primero para móvil.</p>
+  </div>
+  <div class="details-card">
+    <div class="detail-photo">
+      <div>
+        <small>FOTO DEL HOTEL</small>
+        <b>hotel.jpg</b>
+      </div>
+    </div>
+    <div class="detail-content">
+      <div class="eyebrow">HOTEL AURORA</div>
+      <h3>Tu estancia empieza aquí</h3>
+      <p>Agrega aquí la descripción del hotel, servicios, ubicación y cualquier información importante para tus huéspedes.</p>
+      <div class="amenities">
+        <span>📶 Wi-Fi</span>
+        <span>🥐 Desayuno</span>
+        <span>🅿 Parking</span>
+        <span>🛎 Recepción 24h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTURA Y PAGO (SHEET GRANDE) -->
+<div class="drawer-backdrop hidden" id="backdrop"></div>
+
+<!-- SHEET DE FECHAS -->
+<div class="bottom-sheet hidden" id="dateSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3>Selecciona tus fechas</h3>
+    <button class="close-sheet" data-close="dateSheet">×</button>
+  </div>
+  <div class="month-nav">
+    <button id="prevMonth">‹</button>
+    <strong id="monthTitle"></strong>
+    <button id="nextMonth">›</button>
+  </div>
+  <div class="calendar-grid" id="calendarGrid"></div>
+  <div class="sheet-dates">
+    <div><small>CHECK-IN</small><b id="sheetIn">—</b></div>
+    <div><small>CHECK-OUT</small><b id="sheetOut">—</b></div>
+  </div>
+  <button class="btn-primary full" id="dateDone">Listo</button>
+</div>
+
+<!-- SHEET DE HUÉSPEDES -->
+<div class="bottom-sheet small-sheet hidden" id="guestSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3>Habitaciones y huéspedes</h3>
+    <button class="close-sheet" data-close="guestSheet">×</button>
+  </div>
+  <div class="counter">
+    <div><strong>Habitaciones</strong><small>Que deseas reservar</small></div>
+    <div class="counter-controls">
+      <button data-counter="rooms" data-dir="-1">−</button>
+      <b id="roomsCount">1</b>
+      <button data-counter="rooms" data-dir="1">+</button>
+    </div>
+  </div>
+  <div class="counter">
+    <div><strong>Adultos</strong><small>Mayores de 12 años</small></div>
+    <div class="counter-controls">
+      <button data-counter="adults" data-dir="-1">−</button>
+      <b id="adultsCount">2</b>
+      <button data-counter="adults" data-dir="1">+</button>
+    </div>
+  </div>
+  <div class="counter">
+    <div><strong>Niños</strong><small>De 0 a 11 años</small></div>
+    <div class="counter-controls">
+      <button data-counter="children" data-dir="-1">−</button>
+      <b id="childrenCount">0</b>
+      <button data-counter="children" data-dir="1">+</button>
+    </div>
+  </div>
+  <button class="btn-primary full" id="guestDone" style="margin-top:15px">Aplicar</button>
+</div>
+
+<!-- SHEET DE CHECKOUT / FACTURA -->
+<div class="bottom-sheet large-sheet hidden" id="invoiceSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3>Completa tu reserva</h3>
+    <button class="close-sheet" data-close="invoiceSheet">×</button>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step done" data-step="1"><div class="step-num">1</div><div class="step-label">FACTURA</div></div>
+    <div class="step" data-step="2"><div class="step-num">2</div><div class="step-label">DATOS</div></div>
+    <div class="step" data-step="3"><div class="step-num">3</div><div class="step-label">PAGO</div></div>
+  </div>
+
+  <!-- PASO 1: FACTURA -->
+  <div id="invoiceStep1">
+    <div class="invoice">
+      <div class="invoice-header">
+        <div>
+          <div class="invoice-logo">🏨 Hotel Aurora</div>
+          <small style="color:var(--muted)">Factura proforma</small>
+        </div>
+        <div class="invoice-meta">
+          <b id="invId">—</b>
+          <span id="invDate">—</span>
+        </div>
+      </div>
+
+      <div class="invoice-guest">
+        <h4>DETALLES DE LA ESTADÍA</h4>
+        <p><b>Habitación:</b> <span id="invRoom">—</span></p>
+        <p><b>Check-in:</b> <span id="invCheckin">—</span> · <b>Check-out:</b> <span id="invCheckout">—</span></p>
+        <p><b>Noches:</b> <span id="invNights">—</span> · <b>Huéspedes:</b> <span id="invGuests">—</span></p>
+      </div>
+
+      <table class="invoice-table">
+        <thead><tr><th>CONCEPTO</th><th>CANT.</th><th>P.UNIT</th><th style="text-align:right">SUBTOTAL</th></tr></thead>
+        <tbody id="invBody"></tbody>
+      </table>
+
+      <div class="invoice-totals">
+        <div class="row"><span>Subtotal</span><b id="invSubtotal">—</b></div>
+        <div class="row"><span>Impuestos (5%)</span><b id="invTax">—</b></div>
+        <div class="row total"><span>TOTAL USD</span><b id="invTotal">—</b></div>
+        <div class="bcv">Equivalente en Bs: <b id="invBcvTotal">—</b> (Tasa BCV: <span id="invRate">—</span>)</div>
+      </div>
+    </div>
+    <div class="invoice-note">La reserva queda sujeta a verificación manual del pago. Al confirmar, se asigna automáticamente una habitación disponible del tipo seleccionado.</div>
+    <button class="btn-primary full" style="margin-top:20px" onclick="goToStep(2)">Proceder con la reservación →</button>
+  </div>
+
+  <!-- PASO 2: DATOS DEL HUÉSPED -->
+  <div id="invoiceStep2" class="hidden">
+    <form id="guestForm" class="booking-form" style="box-shadow:none;padding:0">
+      <div class="form-grid">
+        <div class="wide">
+          <label>Nombre completo *</label>
+          <input type="text" id="gName" required placeholder="Juan Pérez García">
+        </div>
+        <div>
+          <label>Cédula o Pasaporte *</label>
+          <input type="text" id="gId" required placeholder="V-12345678 o P1234567">
+        </div>
+        <div>
+          <label>Edad *</label>
+          <input type="number" id="gAge" min="18" max="120" required placeholder="30">
+        </div>
+        <div>
+          <label>Número de teléfono *</label>
+          <input type="tel" id="gPhone" required placeholder="+58 412 1234567">
+        </div>
+        <div>
+          <label>Correo electrónico *</label>
+          <input type="email" id="gEmail" required placeholder="correo@ejemplo.com">
+        </div>
+        <div>
+          <label>Adultos *</label>
+          <input type="number" id="gAdults" min="1" required value="2">
+        </div>
+        <div>
+          <label>Niños</label>
+          <input type="number" id="gChildren" min="0" value="0">
+        </div>
+        <div class="wide">
+          <label>Solicitud especial</label>
+          <textarea id="gSpecial" placeholder="Habitación en planta baja, alergias, etc."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button type="button" class="btn-secondary" onclick="goToStep(1)" style="flex:1">← Atrás</button>
+        <button type="submit" class="btn-primary" style="flex:2">Continuar al pago →</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- PASO 3: PAGO -->
+  <div id="invoiceStep3" class="hidden">
+    <div style="background:var(--paper);padding:15px;border-radius:12px;margin-bottom:15px">
+      <div style="font-size:10px;color:var(--muted);font-weight:800;letter-spacing:.1em">TOTAL A PAGAR</div>
+      <div style="font:700 28px Georgia,serif;color:var(--plum)" id="payAmount">$0</div>
+      <div style="font-size:12px;color:var(--muted)" id="payBcv">Bs. 0</div>
+    </div>
+
+    <h4 style="margin:15px 0 10px;color:var(--plum)">Selecciona método de pago</h4>
+    <div class="payment-methods" id="paymentMethods"></div>
+
+    <div id="captureSection" class="hidden">
+      <label class="capture-upload" id="captureLabel">
+        <div class="icon">📷</div>
+        <div style="font-weight:700;margin:5px 0">Sube la captura del pago</div>
+        <small style="color:var(--muted)">JPG/PNG, máximo 5MB</small>
+        <input type="file" id="captureInput" accept="image/*">
+        <img id="capturePreview" class="capture-preview hidden">
+      </label>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button class="btn-secondary" onclick="goToStep(2)" style="flex:1">← Atrás</button>
+      <button class="btn-primary" id="confirmBookingBtn" style="flex:2">Confirmar reserva ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- SHEET DE RESERVA EXITOSA -->
+<div class="bottom-sheet small-sheet hidden" id="successSheet">
+  <div class="sheet-handle"></div>
+  <div style="text-align:center;padding:20px 10px">
+    <div style="font-size:64px">✅</div>
+    <h3 style="color:var(--plum);margin:10px 0">¡Reserva recibida!</h3>
+    <p style="color:var(--muted);font-size:13px;line-height:1.6">
+      Tu reserva <b id="successId">RES-0000</b> ha sido registrada. 
+      Recibirás el ticket de confirmación en tu correo una vez verifiquemos el pago.
+    </p>
+    <div style="background:var(--teal-soft);padding:12px;border-radius:10px;margin:15px 0;font-size:12px">
+      <b>¿Qué sigue?</b><br>
+      • Un administrador revisará tu pago<br>
+      • Recibirás confirmación por correo/teléfono<br>
+      • Presenta tu documento el día del check-in
+    </div>
+    <button class="btn-primary full" onclick="closeAllSheets()">Entendido</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div>🏨 Hotel Aurora © <span id="year"></span> · Sistema beta</div>
+  <a href="admin.html">Panel del negocio →</a>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,12 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hotel Aurora — Panel</title><link rel="stylesheet" href="styles.css"></head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hotel Aurora — Panel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
 <body class="admin-body">
-<header class="admin-nav"><a href="index.html" class="mini-brand"><span class="brand-mark">H</span><strong>Hotel Aurora</strong></a><nav><a class="active" href="#">Resumen</a><a href="#reservas">Reservas</a><a href="#habitaciones">Habitaciones</a><a href="#calendario">Calendario</a></nav><a href="index.html" class="outline-btn">Vista huésped</a></header>
+
+<!-- NAV -->
+<header class="admin-nav">
+  <div class="mini-brand">
+    <div class="brand-mark">H</div>
+    <strong style="font-size:14px">Hotel Aurora</strong>
+  </div>
+  <nav>
+    <a href="#" class="active">Resumen</a>
+    <a href="#reservas">Reservas</a>
+    <a href="#habitaciones">Habitaciones</a>
+    <a href="#calendario">Calendario</a>
+  </nav>
+  <a href="index.html" class="outline-btn">Vista huésped →</a>
+</header>
+
 <main class="admin-main">
-<div class="admin-head"><div><span class="eyebrow">OPERACIONES</span><h1>Buenos días, Hotel Aurora</h1><p id="todayText"></p></div><button class="outline-btn" id="resetData">Restaurar demo</button></div>
-<section class="dashboard-hero"><div><span>HOY</span><h2>Tu hotel,<br>en una sola vista.</h2><p>Disponibilidad, reservas y estados de habitaciones.</p></div><div class="stat-grid"><div><small>LLEGADAS</small><b id="arrivals">0</b></div><div><small>SALIDAS</small><b id="departures">0</b></div><div><small>OCUPADAS</small><b id="occupied">0</b></div><div><small>RESERVAS</small><b id="totalReservations">0</b></div></div></section>
-<section id="habitaciones" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">ESTADO</span><h2>Habitaciones</h2></div><span class="live-dot">● Actualizado</span></div><div id="statusGrid" class="status-grid"></div></section>
-<section id="reservas" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">GESTIÓN</span><h2>Reservas</h2></div><select id="reservationFilter"><option value="all">Todas</option><option value="active">Activas</option><option value="cancelled">Canceladas</option></select></div><div class="table-wrap"><table><thead><tr><th>Reserva</th><th>Huésped</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th><th></th></tr></thead><tbody id="reservationTable"></tbody></table></div></section>
-<section id="calendario" class="admin-panel"><div class="admin-panel-head"><div><span class="eyebrow">PLANIFICACIÓN</span><h2>Calendario</h2></div><div class="month-nav"><button id="prevAdmin">‹</button><b id="adminMonth"></b><button id="nextAdmin">›</button></div></div><div class="admin-calendar-wrap"><div id="adminCalendar" class="admin-calendar"></div></div></section>
-</main><script src="app.js"></script></body></html>
+  <div class="admin-head">
+    <div>
+      <div class="eyebrow">OPERACIONES</div>
+      <h1>Buenos días, Hotel Aurora</h1>
+      <p id="todayText">Hoy</p>
+    </div>
+    <button class="outline-btn" id="resetData">🗑 Restaurar demo</button>
+  </div>
+
+  <!-- HERO DASHBOARD -->
+  <div class="dashboard-hero">
+    <div>
+      <span>HOY</span>
+      <h2>Tu hotel, en una sola vista.</h2>
+      <p>Disponibilidad, reservas y estados de habitaciones.</p>
+    </div>
+    <div class="stat-grid">
+      <div><small>LLEGADAS</small><b id="statArrivals">0</b></div>
+      <div><small>SALIDAS</small><b id="statDepartures">0</b></div>
+      <div><small>OCUPADAS</small><b id="statOccupied">0</b></div>
+      <div><small>RESERVAS</small><b id="statTotal">0</b></div>
+    </div>
+  </div>
+
+  <!-- HABITACIONES -->
+  <section class="admin-panel" id="habitaciones">
+    <div class="admin-panel-head">
+      <div>
+        <div class="eyebrow">ESTADO</div>
+        <h2>Habitaciones</h2>
+      </div>
+      <div class="status-legend">
+  <span><i class="legend-dot available"></i>Disponible</span>
+  <span><i class="legend-dot occupied"></i>Ocupada</span>
+  <span><i class="legend-dot dirty"></i>Vacante Sucia</span>
+  <span><i class="legend-dot reserved"></i>Reservada</span>
+</div>
+    </div>
+    <div class="status-grid" id="statusGrid"></div>
+  </section>
+
+  <!-- RESERVAS -->
+  <section class="admin-panel" id="reservas">
+    <div class="admin-panel-head">
+      <div>
+        <div class="eyebrow">GESTIÓN</div>
+        <h2>Reservas</h2>
+      </div>
+      <select id="reservationFilter">
+        <option value="all">Todas</option>
+        <option value="pending">Pendientes</option>
+        <option value="confirmed">Confirmadas</option>
+        <option value="checked-in">Check-in</option>
+        <option value="checked-out">Check-out</option>
+        <option value="cancelled">Canceladas</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Reserva</th><th>Huésped</th><th>Hab.</th>
+            <th>Fechas</th><th>Total</th><th>Estado</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="reservationTable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="admin-panel calendar-panel" id="calendario">
+    <div class="admin-panel-head">
+      <div>
+        <div class="eyebrow">PLANIFICACIÓN</div>
+        <h2>Calendario de reservas</h2>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="outline-btn" id="prevAdmin">‹</button>
+        <strong id="adminMonth" style="min-width:140px;text-align:center"></strong>
+        <button class="outline-btn" id="nextAdmin">›</button>
+      </div>
+    </div>
+    <div class="admin-calendar" id="adminCalendar"></div>
+  </section>
+</main>
+
+<!-- BACKDROP -->
+<div class="drawer-backdrop hidden" id="backdrop"></div>
+
+<!-- MODAL DETALLE DE RESERVA -->
+<div class="bottom-sheet large-sheet hidden" id="reservationDetailSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3 id="detailTitle">Detalle de reserva</h3>
+    <button class="close-sheet" data-close="reservationDetailSheet">×</button>
+  </div>
+  <div class="reservation-detail" id="reservationDetailContent"></div>
+</div>
+
+<!-- MODAL EDICIÓN DE FECHAS -->
+<div class="bottom-sheet small-sheet hidden" id="editDatesSheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3>Editar fechas</h3>
+    <button class="close-sheet" data-close="editDatesSheet">×</button>
+  </div>
+  <form id="editDatesForm" style="padding:5px">
+    <input type="hidden" id="editResId">
+    <div style="display:grid;gap:12px">
+      <div>
+        <label style="font-size:11px;font-weight:800">Nuevo Check-in</label>
+        <input type="date" id="editCheckin" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:800">Nuevo Check-out</label>
+        <input type="date" id="editCheckout" required style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px">
+      </div>
+    </div>
+    <button type="submit" class="btn-primary full" style="margin-top:20px">Guardar cambios</button>
+  </form>
+</div>
+
+<!-- MODAL DÍA DEL CALENDARIO -->
+<div class="bottom-sheet small-sheet hidden" id="daySheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-title">
+    <h3 id="dayTitle">Día</h3>
+    <button class="close-sheet" data-close="daySheet">×</button>
+  </div>
+  <div id="dayContent" style="padding:5px"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
